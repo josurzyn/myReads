@@ -17,12 +17,17 @@ class BooksApp extends React.Component {
     })
   }
 
+  moveBook(event) {
+    console.log(event.target.value, event.target.name)
+  }
+
   render() {
     return (
       <div className="app">
         <Route exact path="/" render={() => (
           <ListBooks
             books={this.state.books}
+            onMoveBook={this.moveBook}
           />
         )}/>
         <Route exact path="/search" render={() => (

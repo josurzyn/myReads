@@ -4,9 +4,8 @@ import React, { Component } from 'react'
 class Bookshelf extends Component {
 
   handleChange = (event) => {
-    this.setState({
-      value: event.target.value
-    })
+    console.log(event.target.value, event.target.name)
+    this.props.onMoveBook(event)
   }
 
   render() {
@@ -23,7 +22,7 @@ class Bookshelf extends Component {
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                     <div className="book-shelf-changer">
-                      <select value={book.shelf} onChange={this.handleChange}>
+                      <select value={book.shelf} name={book.id} onChange={this.handleChange}>
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>

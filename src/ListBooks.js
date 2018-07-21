@@ -18,6 +18,7 @@ class ListBooks extends Component {
               shelf="currentlyReading"
               shelfName="Currently Reading"
               books={this.props.books}
+              onMoveBook={this.props.onMoveBook}
             />
 
             <Bookshelf
