@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 
 class Books extends Component {
   render() {
+
     return (
-      <div>
-          {this.props.books
+      <ol className="books-grid">
+          {this.props.books.filter(book => book.shelf === this.props.shelf)
             .map(book => (
             <li key={book.id}>
               <div className="book">
@@ -21,11 +22,15 @@ class Books extends Component {
                 </div>
               </div>
               <div className="book-title">{book.title}</div>
-              <div className="book-authors">{book.author}</div>
+              <div className="book-authors">
+                {book.authors.map(author => (
+                <p key={author} className="author">{author}</p>
+                ))}
+              </div>
             </div>
           </li>
         ))}
-      </div>
+      </ol>
     )
   }
 }

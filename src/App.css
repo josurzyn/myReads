@@ -136,7 +136,9 @@ body, .app {
 .book-authors {
   color: #999;
 }
-
+.author {
+  line-height: 0.3;
+}
 .book-top {
   position: relative;
   height: 200px;
