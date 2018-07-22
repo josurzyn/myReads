@@ -11,29 +11,35 @@ class BooksApp extends React.Component {
   state = {
     books: []
   }
-  componentDidMount() {
+
+  getBooks() {
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
   }
 
-  moveBook = (event) => {
-    console.log(event.target.value, event.target.name, this.state.books)
+  componentDidMount() {
+  //  BooksAPI.getAll().then((books) => {
+  //    this.setState({ books })
+  //  })
+  this.getBooks()
+  }
+
+  /*moveBook = (event) => {
     const targetValue = event.target.value
     const targetID = event.target.name
-    console.log(targetValue, targetID)
     let bookToMove = this.state.books.filter((book) => book.id === targetID)
-    console.log(this.state.books)
-    console.log(bookToMove)
     // trying to find book to edit in array, pull out, edit, then concat with books
     bookToMove[0].shelf = targetValue
-    console.log(bookToMove)
     this.setState({ books: this.state.books})
-    //this.setState( (state) => ({
-    //  books: this.state.books.filter( (book) => book.id !== targetID)
-    //}))
-    //console.log(this.state.books)
-    //console.log(targetID)
+  }*/
+
+  moveBook = (book, shelf) => {
+    //console.log(event, event.target.name, event.target.value)
+    BooksAPI.update(book, shelf).then((response) => {
+      console.log(response)
+      this.getBooks()
+    })
   }
 
   render() {
