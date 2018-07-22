@@ -5,7 +5,8 @@ import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component {
   state = {
-    query: ''
+    query: '',
+    results: []
   }
 
   updateQuery = (query) => {
@@ -24,7 +25,7 @@ class SearchBooks extends Component {
       const match = new RegExp(escapeRegExp(query), 'i')
       console.log(query, match)
       BooksAPI.search(query).then((response) =>
-        console.log(response)
+        this.setState({ results: response})
       )
     //  showingContacts = contacts.filter((contact) => match.test(contact.name))
     } else {
@@ -54,7 +55,22 @@ class SearchBooks extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+              {this.state.results.map(book => (
+                <li key={book.id}>
+                  <div className="book">
+                  <div className="book-top">
+                    <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                    <div className="book-shelf-changer">
+
+                    </div>
+                  </div>
+                  <div className="book-title">{book.title}</div>
+
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </div>
     )
