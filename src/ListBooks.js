@@ -25,12 +25,14 @@ class ListBooks extends Component {
               shelf="wantToRead"
               shelfName="Want to Read"
               books={this.props.books}
+              onMoveBook={this.props.onMoveBook}
             />
 
             <Bookshelf
               shelf="read"
               shelfName="Read"
               books={this.props.books}
+              onMoveBook={this.props.onMoveBook}
             />
 
           </div>
