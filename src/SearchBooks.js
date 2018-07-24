@@ -69,7 +69,8 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-              {this.state.results.map(book => (
+              { this.state.results.length ?
+                this.state.results.map(book => (
                 <li key={book.id}>
                   <div className="book">
                   <div className="book-top">
@@ -95,7 +96,7 @@ class SearchBooks extends Component {
                   </div>
                 </div>
               </li>
-            ))}
+            )) : <p>Sorry, no search results</p>}
           </ol>
         </div>
       </div>
