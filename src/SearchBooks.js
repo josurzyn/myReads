@@ -25,8 +25,8 @@ class SearchBooks extends Component {
       const match = new RegExp(escapeRegExp(query), 'i')
       console.log(query, match)
       BooksAPI.search(query).then((response) =>
-        //this.setState({ results: response})
-        console.log(response)
+        this.setState({ results: response})
+        //console.log(response)
       )
     //  showingContacts = contacts.filter((contact) => match.test(contact.name))
     } else {

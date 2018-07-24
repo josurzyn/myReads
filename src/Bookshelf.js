@@ -1,25 +1,20 @@
 import React, { Component } from 'react'
-import Books from './Books.js'
+//import Books from './Books.js'
 
 class Bookshelf extends Component {
 
-/*  handleChange(book, shelf) {
+  handleChange(book, shelf) {
     console.log(book, shelf)
     this.props.onMoveBook(book, shelf)
   }
-*/
+
   render() {
 
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{this.props.shelfName}</h2>
         <div className="bookshelf-books">
-          <Books
-            shelf={this.props.shelf}
-            books={this.props.books}
-            onMoveBook={this.props.onMoveBook}
-          />
-    {/*      <ol className="books-grid">
+          <ol className="books-grid">
               {this.props.books.filter(book => book.shelf === this.props.shelf)
                 .map(book => (
                 <li key={book.id}>
@@ -46,7 +41,7 @@ class Bookshelf extends Component {
                 </div>
               </li>
             ))}
-          </ol> */}
+          </ol>
         </div>
       </div>
     )
