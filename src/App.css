@@ -131,13 +131,13 @@ body, .app {
   font-size: 0.8em;
 }
 .book-title {
-  margin-top: 10px;
+  margin: 10px 0 5px;
 }
 .book-authors {
   color: #999;
 }
 .author {
-  line-height: 0.3;
+  margin: 0;
 }
 .book-top {
   position: relative;
