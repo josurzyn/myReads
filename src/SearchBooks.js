@@ -15,6 +15,7 @@ class SearchBooks extends Component {
       this.setState({ results: response})
       //console.log(response)
     )
+    console.log(this.state.results)
   }
 
   clearQuery = () => {
@@ -87,7 +88,11 @@ class SearchBooks extends Component {
                     </div>
                   </div>
                   <div className="book-title">{book.title}</div>
-
+                  <div className="book-authors">
+                    {book.authors ? book.authors.map(author => (
+                    <p key={author} className="author">{author}</p>
+                  )) : <p className="author">Author Unknown</p>}
+                  </div>
                 </div>
               </li>
             ))}
