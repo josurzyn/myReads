@@ -34,6 +34,8 @@ class SearchBooks extends Component {
       console.log('no query')
     }
 
+
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -61,7 +63,7 @@ class SearchBooks extends Component {
                 <li key={book.id}>
                   <div className="book">
                   <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                    <div className="book-cover" style={book.imageLinks ? { width: 128, height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` } : { width: 128, height: 188, backgroundImage: `url(http://via.placeholder.com/128x193?text=No+Image)` }}></div>
                     <div className="book-shelf-changer">
 
                     </div>
