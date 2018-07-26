@@ -5,11 +5,11 @@ import './App.css'
 import ListBooks from './ListBooks.js'
 import SearchBooks from './SearchBooks.js'
 
-console.log(BooksAPI.getAll())
-
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    query: '',
+    results: []
   }
 
   getBooks() {
@@ -37,11 +37,47 @@ class BooksApp extends React.Component {
   moveBook = (book, shelf) => {
     //console.log(event, event.target.name, event.target.value)
     BooksAPI.update(book, shelf).then((response) => {
-      console.log(response)
       this.getBooks()
       console.log('getting books')
     })
   }
+
+  addBook = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(() =>
+      BooksAPI.getAll().then((books) => {
+      this.setState({ books }, () => this.updateResults(this.state.query))
+    })
+    )
+  }
+  //adding search functionality to app
+    updateQuery = (query) => {
+      console.log(query)
+      this.setState({ query: query }, () => this.updateResults(this.state.query))
+    }
+
+    updateResults = (query) => {
+      //this.setState({ query: 'banana' })
+      let booksOnShelves = this.state.books.filter( (book) => book.shelf === 'currentlyReading' || 'wantToRead' || 'read')
+      console.log('state query ', this.state.query, 'using query ', query, booksOnShelves)
+      BooksAPI.search(query).then((response) => {
+        if (response && !response.error) {
+          response.forEach(book => {
+            let bookMatch = booksOnShelves.find(b => book.id === b.id)
+            console.log(bookMatch)
+            if (bookMatch) {
+              console.log('book found!', book.title, bookMatch)
+              book.shelf = bookMatch.shelf
+            } else {
+              //console.log('book not already on shelf', book.title)
+              book.shelf = 'none'
+            }
+          })
+          this.setState({ results: response})
+        } else {
+          this.setState({ results: [] })
+        }
+      })
+    }
 
   render() {
     return (
@@ -54,7 +90,10 @@ class BooksApp extends React.Component {
         )}/>
         <Route exact path="/search" render={() => (
           <SearchBooks
-            onMoveBook={this.moveBook}
+            //booksOnShelves = {this.state.books.filter( (book) => book.shelf === 'currentlyReading' || 'wantToRead' || 'read')}
+            onAddBook={this.addBook}
+            results={this.state.results}
+            updateQuery={this.updateQuery}
           />
         )}/>
       </div>

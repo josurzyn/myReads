@@ -1,35 +1,64 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import escapeRegExp from 'escape-string-regexp'
+//import escapeRegExp from 'escape-string-regexp'
 import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component {
-  state = {
+  /*state = {
     query: '',
     results: []
-  }
+  }*/
 
-  updateQuery = (query) => {
+/*  updateQuery = (query) => {
     this.setState({ query: query.trim() })
     BooksAPI.search(query).then((response) =>
       this.setState({ results: response})
       //console.log(response)
     )
     console.log(this.state.results)
+  }*/
+/*
+  updateQuery = (query) => {
+    console.log(query)
+    this.setState({ query: query }, () => this.updateResults(this.state.query))
   }
 
-  clearQuery = () => {
+  updateResults = (query) => {
+    //this.setState({ query: 'banana' })
+    console.log('state query ', this.state.query, 'using query ', query)
+    BooksAPI.search(query).then((response) => {
+      if (response && !response.error) {
+        response.forEach(book => {
+          let bookMatch = this.props.booksOnShelves.find(b => book.id === b.id)
+          if (bookMatch) {
+            //console.log('book found!', book.title, bookMatch)
+            book.shelf = bookMatch.shelf
+          } else {
+            //console.log('book not already on shelf', book.title)
+            book.shelf = 'none'
+          }
+        })
+        this.setState({ results: response})
+      } else {
+        this.setState({ results: [] })
+      }
+    })
+  }
+*/
+/*  clearQuery = () => {
     this.setState({ query: '' })
   }
-
+*/
   handleChange(book, shelf) {
     console.log(book, shelf)
-    this.props.onMoveBook(book, shelf)
+    this.props.onAddBook(book, shelf)
+//    this.updateResults(this.state.query)
   }
 
   render() {
 
-    const { query } = this.state
+
+//    const { query } = this.state
 
   /*  if (query) {
       const match = new RegExp(escapeRegExp(query), 'i')
@@ -62,15 +91,15 @@ class SearchBooks extends Component {
             <input
               type="text"
               placeholder="Search by title or author"
-              onChange={(event) => this.updateQuery(event.target.value)}
+              onChange={(event) => this.props.updateQuery(event.target.value)}
             />
 
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-              { this.state.results.length ?
-                this.state.results.map(book => (
+              { this.props.results.length ?
+                this.props.results.map(book => (
                 <li key={book.id}>
                   <div className="book">
                   <div className="book-top">
@@ -96,7 +125,7 @@ class SearchBooks extends Component {
                   </div>
                 </div>
               </li>
-            )) : <p>Sorry, no search results</p>}
+            )) : null}
           </ol>
         </div>
       </div>
