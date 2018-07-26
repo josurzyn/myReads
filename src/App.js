@@ -79,6 +79,10 @@ class BooksApp extends React.Component {
       })
     }
 
+    clearQuery = () => {
+        this.setState({ query: '' }, () => this.updateResults(this.state.query))
+      }
+
   render() {
     return (
       <div className="app">
@@ -93,7 +97,8 @@ class BooksApp extends React.Component {
             //booksOnShelves = {this.state.books.filter( (book) => book.shelf === 'currentlyReading' || 'wantToRead' || 'read')}
             onAddBook={this.addBook}
             results={this.state.results}
-            updateQuery={this.updateQuery}
+            onUpdateQuery={this.updateQuery}
+            onClearQuery={this.clearQuery}
           />
         )}/>
       </div>

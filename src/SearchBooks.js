@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 //import escapeRegExp from 'escape-string-regexp'
-import * as BooksAPI from './BooksAPI'
+//import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component {
   /*state = {
@@ -49,6 +49,10 @@ class SearchBooks extends Component {
     this.setState({ query: '' })
   }
 */
+  componentWillUnmount() {
+    this.props.onClearQuery()
+  }
+
   handleChange(book, shelf) {
     console.log(book, shelf)
     this.props.onAddBook(book, shelf)
@@ -91,7 +95,7 @@ class SearchBooks extends Component {
             <input
               type="text"
               placeholder="Search by title or author"
-              onChange={(event) => this.props.updateQuery(event.target.value)}
+              onChange={(event) => this.props.onUpdateQuery(event.target.value)}
             />
 
           </div>
