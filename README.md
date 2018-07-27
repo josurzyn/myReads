@@ -7,6 +7,9 @@ This is my implementation of the Udacity MyReads project, completed as part of t
 * Start the server using 'npm start'
 * Get reading!
 
+## Searching
+The project is limited to a set collection of search terms. Available search terms can be found in SEARCH_TERMS.md
+
 # Original Brief
 This is the starter template for the final assessment project for Udacity's React Fundamentals course. The goal of this template is to save you time by providing a static example of the CSS and HTML markup that may be used, but without any of the React code that is needed to complete the project. If you choose to start with this template, your job will be to add interactivity to the app by refactoring the static code in this template.
 
