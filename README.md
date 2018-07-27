@@ -1,10 +1,11 @@
 # MyReads Project
-This is my implementation of the Udacity MyReads project, completed as part of the Udacity Front-End Nanodegree. The project was to turn a static template into a fully functional React App that lets you keep a record of books you're reading, would like to read or have read. You can search for books to add to your shelves, and then move books between shelves, either from the shelves themselves, or the search results.
+This is my implementation of the Udacity MyReads project, completed as part of the Udacity Front-End Nanodegree. The project was to turn a static template into a fully functional React App that lets you keep a record of books you're reading, would like to read or have read. You can search for books to add to your shelves and move books between shelves as you wish, either from the shelves themselves, or the search results.
 
 ## Installation
 * Clone or download this repository
-* Install dependencies using 'npm install'
-* Start the server using 'npm start'
+* `cd` into repository
+* Install dependencies using `npm install`
+* Start the server using `npm start`
 * Get reading!
 
 ## Searching
