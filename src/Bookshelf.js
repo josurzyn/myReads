@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
+import Book from './Book.js'
 
 class Bookshelf extends Component {
 
-  // Handle change to shelf value
+  /* Handle change to shelf value
   handleChange(book, shelf) {
     console.log(book, shelf)
     this.props.onMoveBook(book, shelf)
-  }
+  }*/
 
   render() {
 
@@ -18,7 +19,11 @@ class Bookshelf extends Component {
               {this.props.books.filter(book => book.shelf === this.props.shelf)
                 .map(book => (
                 <li key={book.id}>
-                  <div className="book">
+                  <Book
+                    book={book}
+                    onMoveBook={this.props.onMoveBook}
+                  />
+                {/*}  <div className="book">
                   <div className="book-top">
                     <div className="book-cover" style={book.imageLinks ?
                       { width: 128, height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` } :
@@ -40,7 +45,7 @@ class Bookshelf extends Component {
                     <p key={author} className="author">{author}</p>
                   )) : <p className="author">Author Unknown</p>}
                   </div>
-                </div>
+                </div>*/}
               </li>
             ))}
           </ol>

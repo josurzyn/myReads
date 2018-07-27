@@ -52,8 +52,9 @@ class BooksApp extends React.Component {
     let booksOnShelves = this.state.books.filter( (book) => book.shelf === 'currentlyReading' || 'wantToRead' || 'read')
     // Check if query or deleted
     if (query.length) {
-      // Get search results from BooksAPI, check against books already on booksOnShelves
-      // and update shelf accordingly
+      /* Get search results from BooksAPI, check against books already on booksOnShelves
+       * and update shelf accordingly
+       */
       BooksAPI.search(query).then((response) => {
         if (response && !response.error) {
           response.forEach(book => {
@@ -104,6 +105,7 @@ class BooksApp extends React.Component {
             results={this.state.results}
             onUpdateQuery={this.updateQuery}
             onClearQuery={this.clearQuery}
+            onMoveBook={this.addBook}
           />
         )}/>
       </div>

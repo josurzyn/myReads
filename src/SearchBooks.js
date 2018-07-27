@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Book from './Book.js'
 
 class SearchBooks extends Component {
 
@@ -8,10 +9,10 @@ class SearchBooks extends Component {
     this.props.onClearQuery()
   }
 
-  // Handle change to shelf value
+  /* Handle change to shelf value
   handleChange(book, shelf) {
     this.props.onAddBook(book, shelf)
-  }
+  }*/
 
   render() {
 
@@ -32,7 +33,11 @@ class SearchBooks extends Component {
               { this.props.results.length ?
                 this.props.results.map(book => (
                 <li key={book.id}>
-                  <div className="book">
+                  <Book
+                    book={book}
+                    onMoveBook={this.props.onMoveBook}
+                  />
+                  {/*}<div className="book">
                   <div className="book-top">
                     <div className="book-cover" style={book.imageLinks ?
                       { width: 128, height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` } :
@@ -54,7 +59,7 @@ class SearchBooks extends Component {
                     <p key={author} className="author">{author}</p>
                   )) : <p className="author">Author Unknown</p>}
                   </div>
-                </div>
+                </div>*/}
               </li>
             )) : null}
           </ol>
