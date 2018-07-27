@@ -20,7 +20,10 @@ class Bookshelf extends Component {
                 <li key={book.id}>
                   <div className="book">
                   <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                    <div className="book-cover" style={book.imageLinks ?
+                      { width: 128, height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` } :
+                      { width: 128, height: 188, backgroundImage: `url(http://via.placeholder.com/128x193?text=No+Image)` }}>
+                    </div>
                     <div className="book-shelf-changer">
                       <select value={book.shelf} onChange={(event) => this.handleChange(book, event.target.value)}>
                         <option value="move" disabled>Move to...</option>
@@ -33,9 +36,9 @@ class Bookshelf extends Component {
                   </div>
                   <div className="book-title">{book.title}</div>
                   <div className="book-authors">
-                    {book.authors.map(author => (
+                    {book.authors ? book.authors.map(author => (
                     <p key={author} className="author">{author}</p>
-                    ))}
+                  )) : <p className="author">Author Unknown</p>}
                   </div>
                 </div>
               </li>

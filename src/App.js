@@ -50,7 +50,6 @@ class BooksApp extends React.Component {
   updateResults = (query) => {
     // Find books already on shelves
     let booksOnShelves = this.state.books.filter( (book) => book.shelf === 'currentlyReading' || 'wantToRead' || 'read')
-    console.log('state query ', this.state.query, 'using query ', query, booksOnShelves)
     // Check if query or deleted
     if (query.length) {
       // Get search results from BooksAPI, check against books already on booksOnShelves
@@ -82,7 +81,7 @@ class BooksApp extends React.Component {
 
   // Update results using throttle to manage fast-typed requests
   updateResultsThrottled() {
-    throttle(300, this.updateResults(this.state.query))
+    throttle(200, this.updateResults(this.state.query))
   }
 
     // Clear query and update results to clear

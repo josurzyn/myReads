@@ -10,7 +10,6 @@ class SearchBooks extends Component {
 
   // Handle change to shelf value
   handleChange(book, shelf) {
-    console.log(book, shelf)
     this.props.onAddBook(book, shelf)
   }
 
@@ -38,7 +37,7 @@ class SearchBooks extends Component {
                     <div className="book-cover" style={book.imageLinks ?
                       { width: 128, height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` } :
                       { width: 128, height: 188, backgroundImage: `url(http://via.placeholder.com/128x193?text=No+Image)` }}>
-                      </div>
+                    </div>
                     <div className="book-shelf-changer">
                       <select value={book.shelf} onChange={(event) => this.handleChange(book, event.target.value)}>
                         <option value="move" disabled>Move to...</option>
