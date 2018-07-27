@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import Bookshelf from './Bookshelf.js'
-// import Book from './Book.js'
 import Header from './Header.js'
 import OpenSearch from './OpenSearch.js'
-// import * as BooksAPI from './BooksAPI'
 
 class ListBooks extends Component {
   render() {
@@ -13,28 +11,24 @@ class ListBooks extends Component {
         <Header/>
         <div className="list-books-content">
           <div>
-
             <Bookshelf
               shelf="currentlyReading"
               shelfName="Currently Reading"
               books={this.props.books}
               onMoveBook={this.props.onMoveBook}
             />
-
             <Bookshelf
               shelf="wantToRead"
               shelfName="Want to Read"
               books={this.props.books}
               onMoveBook={this.props.onMoveBook}
             />
-
             <Bookshelf
               shelf="read"
               shelfName="Read"
               books={this.props.books}
               onMoveBook={this.props.onMoveBook}
             />
-
           </div>
         </div>
         <OpenSearch/>
